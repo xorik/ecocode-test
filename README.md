@@ -27,4 +27,20 @@ create a new repository with the current code base. commit your changes and send
 
 
 ## Further improvements
-- Filled by you
+- Replace annotations with PHP7 types, e.g.
+```php
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+     setName($name)
+```
+to
+```php
+    setName(string $name): self
+```
+- Use consistent visibility for entity fields. Currently some of them are private, some are protected.
+- Rewrite deprecate classes with recommended (e.g. Controller, GetResponseEvent)
+- In the user manager the interface UserInterface is used. Maybe it makes sense to use the User class directly.
+- Fields createdAt, updatedAt aren't working. To fix the update date it's possible to use doctrine events. For create date I recommend put it in the constructor.
