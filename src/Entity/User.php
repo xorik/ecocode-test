@@ -120,7 +120,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="locale", type="string")
      */
-    private $locale;
+    private $locale = 'en';
 
     /**
      * @var string
