@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -28,16 +27,14 @@ class UserManager
     /**
      * UserManager constructor.
      *
-     * @param UserRepository          $ur
      * @param EncoderFactoryInterface $ef
      * @param EntityManagerInterface  $em
      */
     public function __construct(
-        UserRepository $ur,
         EncoderFactoryInterface $ef,
         EntityManagerInterface $em
     ) {
-        $this->userRepository = $ur;
+        $this->userRepository = $em->getRepository(User::class);
         $this->encoderFactory = $ef;
         $this->em = $em;
     }
