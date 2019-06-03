@@ -1,6 +1,6 @@
 <?php
 /**
- * IGNORE FIXTURE FILES
+ * IGNORE FIXTURE FILES.
  */
 
 namespace App\DataFixtures;
@@ -26,15 +26,15 @@ class MovieFixture extends Fixture
     {
         $movies = [
             [
-                'title'  => 'Dark Phoenix',
+                'title' => 'Dark Phoenix',
                 'genres' => [
                     $this->getReference('GENRE_ACTION'),
                     $this->getReference('GENRE_ADVENTURE'),
                     $this->getReference('GENRE_SCI_FI'),
-                ]
+                ],
             ],
             [
-                'title'  => 'Aladdin (2019)',
+                'title' => 'Aladdin (2019)',
                 'genres' => [
                     $this->getReference('GENRE_ADVENTURE'),
                     $this->getReference('GENRE_COMEDY'),
@@ -42,25 +42,21 @@ class MovieFixture extends Fixture
                     $this->getReference('GENRE_FANTASY'),
                     $this->getReference('GENRE_MUSICAL'),
                     $this->getReference('GENRE_ROMANCE'),
-                ]
-            ]
+                ],
+            ],
         ];
 
         foreach ($movies as $movieData) {
-            {
+            $movie = new Movie();
 
-                $movie = new Movie();
+            $movie->setTitle($movieData['title']);
 
-                $movie->setTitle($movieData['title']);
-
-                foreach ($movieData['genres'] as $genreReference) {
-                    $movie->addGenre($genreReference);
-                }
-
-                $manager->persist($movie);
+            foreach ($movieData['genres'] as $genreReference) {
+                $movie->addGenre($genreReference);
             }
-        }
 
+            $manager->persist($movie);
+        }
 
         $manager->flush();
     }

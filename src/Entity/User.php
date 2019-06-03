@@ -19,7 +19,7 @@ class User implements UserInterface
 
     const TYPES = [
         self::TYPE_USER,
-        self::TYPE_ADMIN
+        self::TYPE_ADMIN,
     ];
 
     const STATUS_ACTIVE = 'active';
@@ -29,9 +29,8 @@ class User implements UserInterface
     const STATUS = [
         self::STATUS_ACTIVE,
         self::STATUS_INACTIVE,
-        self::STATUS_DELETED
+        self::STATUS_DELETED,
     ];
-
 
     const TITLE_MR = 'mr';
     const TITLE_MS = 'ms';
@@ -41,6 +40,32 @@ class User implements UserInterface
         self::TITLE_MS,
     ];
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", nullable=true)
+     */
+    protected $type = self::TYPE_USER;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", nullable=false)
+     */
+    protected $status = self::STATUS_ACTIVE;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $createdAt;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updatedAt;
 
     /**
      * @ORM\Id()
@@ -70,26 +95,11 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", nullable=true)
-     */
-    protected $type = self::TYPE_USER;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string", nullable=false)
-     */
-    protected $status = self::STATUS_ACTIVE;
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
     private $plainPassword;
-
 
     /**
      * @var \DateTime
@@ -106,19 +116,6 @@ class User implements UserInterface
     private $loginCount;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $createdAt;
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $updatedAt;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="locale", type="string")
@@ -132,11 +129,10 @@ class User implements UserInterface
      */
     private $title = null;
 
-
     public function __construct()
     {
         $this->setRoles(['ROLE_USER']);
-        $this->createdAt  = new \DateTime();
+        $this->createdAt = new \DateTime();
         $this->loginCount = 0;
     }
 
@@ -164,7 +160,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string)$this->email;
+        return (string) $this->email;
     }
 
     /**
@@ -196,6 +192,7 @@ class User implements UserInterface
 
     /**
      * @param string $status
+     *
      * @return $this
      */
     public function setStatus($status)
@@ -210,7 +207,7 @@ class User implements UserInterface
      */
     public function isActive()
     {
-        return $this->status === self::STATUS_ACTIVE;
+        return self::STATUS_ACTIVE === $this->status;
     }
 
     /**
@@ -233,13 +230,12 @@ class User implements UserInterface
         return $this;
     }
 
-
     /**
      * @see UserInterface
      */
     public function getPassword(): string
     {
-        return (string)$this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -296,6 +292,7 @@ class User implements UserInterface
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName(string $name)
@@ -304,7 +301,6 @@ class User implements UserInterface
 
         return $this;
     }
-
 
     /**
      * @return \DateTime

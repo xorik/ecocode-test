@@ -12,6 +12,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Genre
 {
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $createdAt;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updatedAt;
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -25,21 +37,6 @@ class Genre
      * @Assert\NotBlank()
      */
     private $name;
-
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $createdAt;
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $updatedAt;
-
 
     /**
      * @return mixed
@@ -59,11 +56,13 @@ class Genre
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName(string $name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -77,11 +76,13 @@ class Genre
 
     /**
      * @param \DateTime $createdAt
+     *
      * @return $this
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -95,11 +96,13 @@ class Genre
 
     /**
      * @param \DateTime $updatedAt
+     *
      * @return $this
      */
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }

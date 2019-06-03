@@ -2,9 +2,9 @@
 
 namespace App\Controller\User;
 
-use App\Service\UserManager;
 use App\Entity\User;
 use App\Form\User\RegistrationType;
+use App\Service\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +14,7 @@ class RegistrationController extends Controller
 {
     /**
      * @Route("/register", name="app_register")
+     *
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

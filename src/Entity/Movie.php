@@ -13,21 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Movie
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\NotBlank()
-     */
-    private $title;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
@@ -45,6 +30,20 @@ class Movie
      * @ORM\JoinTable(name="movie_genre")
      */
     protected $genreCollection;
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $title;
 
     public function __construct()
     {
@@ -69,6 +68,7 @@ class Movie
 
     /**
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title): self
@@ -88,11 +88,13 @@ class Movie
 
     /**
      * @param \DateTime $createdAt
+     *
      * @return $this
      */
     public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -106,11 +108,13 @@ class Movie
 
     /**
      * @param \DateTime $updatedAt
+     *
      * @return $this
      */
     public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -124,6 +128,7 @@ class Movie
 
     /**
      * @param mixed $genreCollection
+     *
      * @return $this
      */
     public function setGenreCollection($genreCollection)

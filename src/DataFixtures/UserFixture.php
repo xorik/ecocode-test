@@ -1,6 +1,6 @@
 <?php
 /**
- * IGNORE FIXTURE FILES
+ * IGNORE FIXTURE FILES.
  */
 
 namespace App\DataFixtures;

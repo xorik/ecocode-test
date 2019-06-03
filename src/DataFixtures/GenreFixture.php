@@ -1,7 +1,8 @@
 <?php
 /**
- * IGNORE FIXTURE FILES
+ * IGNORE FIXTURE FILES.
  */
+
 namespace App\DataFixtures;
 
 use App\Entity\Genre;
@@ -40,11 +41,10 @@ class GenreFixture extends Fixture
         ];
 
         foreach ($genres as $genreName) {
-
             $genre = new Genre();
             $genre->setName($genreName);
 
-            $this->addReference('GENRE_' . strtoupper(str_replace('-', '_', $genreName)), $genre);
+            $this->addReference('GENRE_'.strtoupper(str_replace('-', '_', $genreName)), $genre);
             $manager->persist($genre);
         }
 

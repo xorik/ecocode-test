@@ -15,7 +15,7 @@ class RegistrationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,7 +25,7 @@ class RegistrationType extends AbstractType
                 ChoiceType::class,
                 [
                     'required' => true,
-                    'choices'  => $this->getTitleChoices(),
+                    'choices' => $this->getTitleChoices(),
                 ]
             )
             ->add('name', TextType::class, ['required' => true])
@@ -34,12 +34,12 @@ class RegistrationType extends AbstractType
                 'plainPassword',
                 RepeatedType::class,
                 [
-                    'type'            => PasswordType::class,
+                    'type' => PasswordType::class,
                     'invalid_message' => 'validation.passwords.must.match',
-                    'options'         => ['attr' => ['class' => 'password-field']],
-                    'required'        => true,
-                    'first_options'   => ['label' => 'Password'],
-                    'second_options'  => ['label' => 'Password Repeat'],
+                    'options' => ['attr' => ['class' => 'password-field']],
+                    'required' => true,
+                    'first_options' => ['label' => 'Password'],
+                    'second_options' => ['label' => 'Password Repeat'],
                 ]
             );
     }
@@ -51,7 +51,7 @@ class RegistrationType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => User::class
+                'data_class' => User::class,
             ]
         );
     }
@@ -60,7 +60,7 @@ class RegistrationType extends AbstractType
     {
         return [
             'mr' => User::TITLE_MR,
-            'ms' => User::TITLE_MS
+            'ms' => User::TITLE_MS,
         ];
     }
 }

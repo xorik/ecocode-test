@@ -12,14 +12,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserManager
 {
     /**
-     * @var EntityRepository
-     */
-    private $userRepository;
-
-    /**
      * @var EncoderFactoryInterface
      */
     protected $encoderFactory;
+    /**
+     * @var EntityRepository
+     */
+    private $userRepository;
 
     /**
      * @var EntityManagerInterface
@@ -29,21 +28,19 @@ class UserManager
     /**
      * UserManager constructor.
      *
-     * @param UserRepository $ur
+     * @param UserRepository          $ur
      * @param EncoderFactoryInterface $ef
-     * @param EntityManagerInterface $em
+     * @param EntityManagerInterface  $em
      */
     public function __construct(
         UserRepository $ur,
         EncoderFactoryInterface $ef,
         EntityManagerInterface $em
-    )
-    {
+    ) {
         $this->userRepository = $ur;
         $this->encoderFactory = $ef;
-        $this->em             = $em;
+        $this->em = $em;
     }
-
 
     /**
      * @param $email
@@ -54,7 +51,6 @@ class UserManager
     {
         return $this->userRepository->findOneBy(['email' => $email]);
     }
-
 
     /**
      * @param UserInterface $user
@@ -69,23 +65,12 @@ class UserManager
 
     /**
      * @param UserInterface $user
-     *
-     * @return mixed
-     */
-    protected function getEncoder(UserInterface $user)
-    {
-        return $this->encoderFactory->getEncoder($user);
-    }
-
-    /**
-     * @param UserInterface $user
      */
     public function saveUser(UserInterface $user)
     {
         $this->em->persist($user);
         $this->em->flush();
     }
-
 
     /**
      * @param User $user
@@ -94,5 +79,15 @@ class UserManager
     {
         $this->em->remove($user);
         $this->em->flush();
+    }
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return mixed
+     */
+    protected function getEncoder(UserInterface $user)
+    {
+        return $this->encoderFactory->getEncoder($user);
     }
 }

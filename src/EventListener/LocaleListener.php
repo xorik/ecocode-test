@@ -2,10 +2,8 @@
 
 namespace App\EventListener;
 
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-
 
 class LocaleListener implements EventSubscriberInterface
 {
@@ -13,6 +11,7 @@ class LocaleListener implements EventSubscriberInterface
 
     /**
      * LocaleListener constructor.
+     *
      * @param string $defaultLocale
      */
     public function __construct($defaultLocale = 'en')
