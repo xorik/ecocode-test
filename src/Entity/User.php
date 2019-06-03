@@ -311,13 +311,11 @@ class User implements UserInterface
     }
 
     /**
-     * @param \DateTime $loginCount
-     *
      * @return $this
      */
-    public function setLoginCount($loginCount)
+    public function incLoginCount()
     {
-        $this->loginCount = $loginCount;
+        ++$this->loginCount;
 
         return $this;
     }

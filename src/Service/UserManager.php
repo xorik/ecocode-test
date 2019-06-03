@@ -52,6 +52,16 @@ class UserManager
     /**
      * @param UserInterface $user
      */
+    public function login(UserInterface $user)
+    {
+        $user->setLastLogin(new \DateTime());
+        $user->incLoginCount();
+        $this->saveUser($user);
+    }
+
+    /**
+     * @param UserInterface $user
+     */
     public function updatePassword(UserInterface $user)
     {
         $password = $user->getPlainPassword();
