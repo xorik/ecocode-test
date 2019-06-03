@@ -54,7 +54,8 @@ class UserManager
      */
     public function updatePassword(UserInterface $user)
     {
-        if (0 < mb_strlen($password = $user->getPlainPassword())) {
+        $password = $user->getPlainPassword();
+        if (0 < mb_strlen($password)) {
             $encoder = $this->getEncoder($user);
             $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
         }
