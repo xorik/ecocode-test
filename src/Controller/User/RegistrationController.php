@@ -19,11 +19,8 @@ class RegistrationController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, UserManager $userManager)
     {
-        /** @var UserManager $userManager */
-        $userManager = $this->get('backend.user.manager');
-
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
@@ -36,9 +33,7 @@ class RegistrationController extends Controller
                 $userManager->updatePassword($user);
 
                 // persist customer and user
-                $om = $this->getDoctrine()->getManager();
-                $om->persist($user);
-                $om->flush();
+                $userManager->saveUser($user);
 
                 // authenticate created user
                 $token = new UsernamePasswordToken($user, $user->getPassword(), 'app_user_provider', $user->getRoles());

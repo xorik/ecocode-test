@@ -33,8 +33,3 @@ services:
         arguments: ['%kernel.default_locale%']
         tags:
             - { name: kernel.event_subscriber }
-
-
-    backend.user.manager:
-        public: true
-        class: 'App\Service\UserManager'
